@@ -1,8 +1,8 @@
 from holistic.models import Post
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .models import Post
-from .forms import PostForm
+from .forms import PostForm, EditPostForm
 # def home(request):
     # return render(request, 'home.html', {})
 
@@ -20,3 +20,8 @@ class AddPostView(CreateView):
     template_name = 'add_post.html'
     # fields = '__all__'
     # fields = ('title', 'post_summary', 'body')
+
+class UpdatePostView(UpdateView):
+    model = Post
+    form_class = EditPostForm
+    template_name = 'update_post.html'
