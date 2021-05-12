@@ -1,1 +1,1 @@
-web: gunicorn holistic.wsgi
+web: gunicorn holisticdiaries.wsgi
