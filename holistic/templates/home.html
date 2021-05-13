@@ -1,12 +1,37 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="container d-flex justify-content-center">
+    <h1 class='title'>The Holistic Diaries</h1>
+</div>
 
-<h1>Posts</h1>
 
+<div class="row">
+<section class="breweries" id="breweries">
+    <ul>
 {% for post in object_list %}
-        <li><a href="{% url 'post' post.pk %}">{{ post.title }} - {{ post.author.first_name }}</a> | <a href="{% url 'update_post' post.pk %}">Edit</a><br/>
-    {{ post.body }}</li>
-{% endfor %}
+        <li>
+            <figure>
+                <!-- Photo by Quentin Dr on Unsplash -->
+                {% if post.header_image %}
+                <img src="{{ post.header_image.url }}" height="200" class="card-img-top" alt="...">
+                {% else %}
+                <img src="https://source.unsplash.com/random" height="200" class="card-img-top" alt="...">
+                {% endif %}
+                <figcaption>
+                    <h3>{{ post.title }}</h3>
+                </figcaption>
+            </figure>
 
+            <small class="date">{{ post.post_date }}</small>
+            <p>
+                {{ post.post_summary }}
+            </p>
+            <a href="{% url 'post' post.pk %}" class="btn btn-light">Read</a>
+            <a href="{% url 'category' post.category|slugify %}"><span class='badge bg-secondary'>{{ post.category }}</span></a>
+        </li>
+{% endfor %}
+    </ul>
+</section>
+</div>
 {% endblock %}

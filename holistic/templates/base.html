@@ -9,24 +9,55 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
-
+    {% load static %}
+    <!-- CSS CUSTOM -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>{% block title %}The Holistic Diaries{% endblock %}</title>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home' %}">The Holistic Diares</a>
+            <a class="navbar-brand" href="{% url 'home' %}">The Holistic Diaries</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'add_post' %}">Add post</a>
                     </li>
-                </ul>
+                    <li class="nav-item">
+                        <a class='nav-link' href="{% url 'add_category' %}">Add category</a>
+                    </li>
+                    {% endif %}
+                    {% if cat_menu %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Categories
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {% for cat in cat_menu %}
+                        <li><a class="dropdown-item" href="{% url 'category' cat|slugify %}">{{ cat.name }}</a></li>
+                        {% endfor%}
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        {% else%}
+                        <li class="nav-item">
+                            <a class='nav-link' href="{% url 'categories_list' %}">Categories</a>
+                        </li>
+                    {% endif%}
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+            </ul>
+            {% if user.is_authenticated %}
+            <a class="navbar-nav nav-link float-right" href="{% url 'logout' %}">Log out</a>
+            {% endif%}
             </div>
         </div>
     </nav>
