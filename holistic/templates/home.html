@@ -6,6 +6,7 @@
     <section class="posts" id="posts">
         <div class='posts-grid'>
             {% for post in object_list %}
+            {% if post.published or user.is_authenticated %}
             <div class="post-card">
                 <div class="post-card-body">
                     <figure>
@@ -22,7 +23,10 @@
                         </a>
                     </figure>
                     <div class='post-details'>
-                        <small class="date">{{ post.post_date }}</small>
+                        <small class="date">{{ post.post_date }}
+                        {% if user.is_authenticated %}
+                        <span class='badge bg-warning'>{% if not post.published %}Draft{% endif %}</span></small>
+                        {% endif %}
                         <p>
                             {{ post.post_summary }}
                         </p>
@@ -33,6 +37,7 @@
                     <a href="{% url 'category' post.category|slugify %}"><span class='badge bg-secondary'>{{ post.category }}</span></a>
                 </div>
             </div>
+            {% endif %}
             {% endfor %}
         </div>
     </section>
