@@ -1,79 +1,24 @@
-@import url("https://fonts.googleapis.com/css2?family=Nixie+One&family=Playfair+Display:wght@400;700&family=Poppins:ital,wght@0,100;0,300;0,600;1,100&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Playfair+Display|Source+Sans+Pro:200,400");
-.post-image-box {
-  display: flex;
-  justify-content: center;
-}
-
-.header-image {
-  background-position: cover;
-  margin: 50px;
-  max-width: 560px;
-}
-
-.post-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 75%;
-  margin: auto;
-}
-
-.comments {
-  margin: 20px 0;
-}
-
-.comment {
-  display: flex;
-  flex-direction: column;
-  margin: 20px 0;
-}
-
-.comment-form {
-  margin: 15px;
-}
-
-.reply {
-  margin-left: 20px;
-}
-
-.manage-post {
-  display: flex;
-}
-
-.manage {
-  text-decoration: none;
-  max-width: 100px;
-}
-
-.navigation-item {
-  color: #4a4a4a !important;
-  font-size: 1rem;
-  text-decoration: none;
-  margin: 0 10px;
-  text-decoration: none;
-}
-
-.navigation {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 30px;
-}
+@import url('https://fonts.googleapis.com/css2?family=Nixie+One&family=Playfair+Display:wght@400;700&family=Poppins:ital,wght@0,100;0,300;0,600;1,100&display=swap');
+@import 'css/post_details';
+@import 'css/nav';
 
 body {
-  font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 h1.title {
-  font-family: 'Nixie One', serif;
-  margin: 30px 0;
+    font-family: 'Nixie One', serif;
+    margin: 30px 0;
 }
 
 .blog-posts-container {
   display: grid | inline-grid;
 }
 
+
 /* Typography imported from Google Fonts */
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display|Source+Sans+Pro:200,400');
+
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Playfair Display', serif;
 }
@@ -90,7 +35,6 @@ html {
 small.date {
   margin-left: 10px;
 }
-
 a.buttonify {
   background-color: goldenrod;
   text-decoration: none;
@@ -115,11 +59,13 @@ a:hover {
   padding: 2rem;
 }
 
-.posts .posts-grid {
+.posts {
+  .posts-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   grid-gap: 1rem;
   justify-content: center;
+  }
 }
 
 .posts > .posts-grid > .post-card {
@@ -145,7 +91,7 @@ a:hover {
 .post-card-body > figure > a > figcaption {
   position: absolute;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0,0,0,.7);
   width: 100%;
 }
 
@@ -163,7 +109,7 @@ a:hover {
 }
 
 .date {
-  color: #666666;
+  color: #666666
 }
 
 .actions {
@@ -173,4 +119,4 @@ a:hover {
   justify-content: space-between;
 }
 
-/*# sourceMappingURL=style.css.map */
+

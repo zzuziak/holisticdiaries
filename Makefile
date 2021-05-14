@@ -12,3 +12,6 @@ shell:
 
 dbshell:
 	python manage.py dbshell
+
+sass:
+	python manage.py sass holistic/static/css/style.scss holistic/static/css/style.css  -g

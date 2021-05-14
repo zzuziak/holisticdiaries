@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'members',
     'ckeditor',
     'cloudinary',
-    'cloudinary_storage'
+    'cloudinary_storage',
+    'django_sass'
 ]
 
 MIDDLEWARE = [
@@ -73,6 +74,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'holistic.context_processors.add_variable_to_context'
+
             ],
         },
     },

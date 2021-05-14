@@ -1,37 +1,40 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container d-flex justify-content-center">
-    <h1 class='title'>The Holistic Diaries</h1>
-</div>
-
 
 <div class="row">
-<section class="breweries" id="breweries">
-    <ul>
-{% for post in object_list %}
-        <li>
-            <figure>
-                <!-- Photo by Quentin Dr on Unsplash -->
-                {% if post.header_image %}
-                <img src="{{ post.header_image.url }}" height="200" class="card-img-top" alt="...">
-                {% else %}
-                <img src="https://source.unsplash.com/random" height="200" class="card-img-top" alt="...">
-                {% endif %}
-                <figcaption>
-                    <h3>{{ post.title }}</h3>
-                </figcaption>
-            </figure>
-
-            <small class="date">{{ post.post_date }}</small>
-            <p>
-                {{ post.post_summary }}
-            </p>
-            <a href="{% url 'post' post.pk %}" class="btn btn-light">Read</a>
-            <a href="{% url 'category' post.category|slugify %}"><span class='badge bg-secondary'>{{ post.category }}</span></a>
-        </li>
-{% endfor %}
-    </ul>
-</section>
+    <section class="posts" id="posts">
+        <div class='posts-grid'>
+            {% for post in object_list %}
+            <div class="post-card">
+                <div class="post-card-body">
+                    <figure>
+                        <a href="{% url 'post' post.pk %}">
+                            <!-- Photo by Quentin Dr on Unsplash -->
+                            {% if post.header_image %}
+                            <img src="{{ post.header_image.url }}" height="200" class="card-img-top" alt="...">
+                            {% else %}
+                            <img src="https://source.unsplash.com/random" height="200" class="card-img-top" alt="...">
+                            {% endif %}
+                            <figcaption>
+                                <h3>{{ post.title }}</h3>
+                            </figcaption>
+                        </a>
+                    </figure>
+                    <div class='post-details'>
+                        <small class="date">{{ post.post_date }}</small>
+                        <p>
+                            {{ post.post_summary }}
+                        </p>
+                    </div>
+                </div>
+                <div class="actions">
+                    <a href="{% url 'post' post.pk %}" class="read">Read >></a>
+                    <a href="{% url 'category' post.category|slugify %}"><span class='badge bg-secondary'>{{ post.category }}</span></a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
 </div>
 {% endblock %}

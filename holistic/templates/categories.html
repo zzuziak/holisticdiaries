@@ -5,17 +5,41 @@
 <h1>{{ cats }} blog posts</h1>
 
 {% if category_posts %}
-    {% for post in category_posts %}
-    <ul>
-        <li><a href="{% url 'post' post.pk %}">{{ post.title }} - {{ post.author.first_name }} - {{ post.category }}</a>
-            {% if user.is_authenticated %}
-            | <a href="{% url 'update_post' post.pk %}">Edit</a>| <a href="{% url 'delete_post' post.pk %}">Delete</a>
-            {% endif %}
-            <br />
-            {{ post.post_summary }}
-        </li>
-    </ul>
-    {% endfor %}
+<div class="row">
+    <section class="posts" id="posts">
+        <div class='posts-grid'>
+            {% for post in category_posts %}
+            <div class="post-card">
+                <div class="post-card-body">
+                    <figure>
+                        <a href="{% url 'post' post.pk %}">
+                            <!-- Photo by Quentin Dr on Unsplash -->
+                            {% if post.header_image %}
+                            <img src="{{ post.header_image.url }}" height="200" class="card-img-top" alt="...">
+                            {% else %}
+                            <img src="https://source.unsplash.com/random" height="200" class="card-img-top" alt="...">
+                            {% endif %}
+                            <figcaption>
+                                <h3>{{ post.title }}</h3>
+                            </figcaption>
+                        </a>
+                    </figure>
+                    <div class='post-details'>
+                        <small class="date">{{ post.post_date }}</small>
+                        <p>
+                            {{ post.post_summary }}
+                        </p>
+                    </div>
+                </div>
+                <div class="actions">
+                    <a href="{% url 'post' post.pk %}" class="read">Read >></a>
+                    <a href="{% url 'category' post.category|slugify %}"><span class='badge bg-secondary'>{{ post.category }}</span></a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</div>
 
 {% else %}
 <p>Sorry, no posts for this category</p>

@@ -5,8 +5,10 @@ from .forms import PostForm, EditPostForm, CommentForm
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import redirect, render, get_object_or_404
 from django.http import HttpResponseRedirect
+from django import template
 # def home(request):
     # return render(request, 'home.html', {})
+
 
 # HOME
 class HomeView(ListView):
@@ -14,11 +16,11 @@ class HomeView(ListView):
     template_name = 'home.html'
     ordering = ['-post_date']
 
-    def get_context_data(self, *args, **kwargs):
-        cat_menu = Category.objects.all()
-        context = super(HomeView, self).get_context_data(*args, **kwargs)
-        context['cat_menu'] = cat_menu
-        return context
+def AboutView(request):
+    return render(request, 'about.html', {})
+
+def ContactView(request):
+    return render(request, 'contact.html', {})
 
 #POSTS
 # class PostView(DetailView):
@@ -67,7 +69,6 @@ def PostView(request, pk, *args, **kwargs):
         form = CommentForm()
 
     return render(request, 'post_details.html', {
-        'cat_menu_': cat_menu,
         'total_likes': total_likes,
         'liked': liked,
         'form': form,

@@ -17,6 +17,9 @@ class Category(models.Model):
     def get_absolute_url(self):
         return reverse('home')
 
+    def upper(self):
+        return self.name.upper()
+
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
@@ -42,7 +45,7 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    name = models.CharField(max_length=255, default="anonymous")
+    name = models.CharField(max_length=255)
     body = models.TextField()
     post = models.ForeignKey(Post, related_name="comments", on_delete=models.CASCADE)
     created_at = models.DateField(auto_now_add=True)
