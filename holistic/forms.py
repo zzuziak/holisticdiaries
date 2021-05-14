@@ -11,7 +11,7 @@ class PostForm(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Write the title'}),
             'author': forms.Select(attrs={'class': 'form-control'}),
-            # 'category': forms.Select(choices=[choice for choice in Category.objects.all().values_list('name', 'name')], attrs={'class': 'form-control'}),
+            'category': forms.Select(choices=[choice for choice in Category.objects.all().values_list('name', 'name')], attrs={'class': 'form-control'}),
             'post_summary': forms.Textarea(attrs={'class': 'form-control'}),
             'body': forms.Textarea(attrs={'class': 'form-control'}),
             'published': forms.CheckboxInput(),
@@ -27,7 +27,7 @@ class EditPostForm(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Write the title'}),
             'post_summary': forms.Textarea(attrs={'class': 'form-control'}),
-            # 'category': forms.Select(choices=[choice for choice in Category.objects.all().values_list('name', 'name')], attrs={'class': 'form-control'}),
+            'category': forms.Select(choices=[choice for choice in Category.objects.all().values_list('name', 'name')], attrs={'class': 'form-control'}),
             'body': forms.Textarea(attrs={'class': 'form-control'}),
             'published': forms.CheckboxInput(),
 
