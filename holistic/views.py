@@ -22,33 +22,6 @@ def AboutView(request):
 def ContactView(request):
     return render(request, 'contact.html', {})
 
-#POSTS
-# class PostView(DetailView):
-#     def form_valid(self, form):
-#         form.instance.post_id = self.kwargs['pk']
-#         return super().form_valid(form)
-
-#     def get_success_url(self):
-#         return reverse_lazy('post', kwargs={'pk': self.kwargs['pk']})
-
-#     model = Post
-#     template_name = 'post_details.html'
-#     form_class = CommentForm
-
-
-
-#     def get_context_data(self, *args, **kwargs):
-#         cat_menu = Category.objects.all()
-#         context = super(PostView, self).get_context_data(*args, **kwargs)
-#         context['cat_menu'] = cat_menu
-#         post = get_object_or_404(Post, id=self.kwargs['pk'])
-#         context['total_likes'] = post.total_like_count()
-#         liked = False
-#         if post.likes.filter(id=self.kwargs['pk']).exists():
-#             liked = True
-
-#         context['liked'] = liked
-#         return context
 
 def PostView(request, pk, *args, **kwargs):
     post = get_object_or_404(Post, pk=pk)
