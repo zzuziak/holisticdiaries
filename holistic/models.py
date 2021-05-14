@@ -25,7 +25,6 @@ class Post(models.Model):
     title = models.CharField(max_length=255)
     post_summary = models.TextField(max_length=999, default="")
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    # body = models.TextField()
     body = RichTextField(blank=True, null=True)
     published = models.BooleanField(default=False)
     post_date = models.DateField(auto_now_add=True)
