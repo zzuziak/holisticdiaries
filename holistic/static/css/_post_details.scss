@@ -44,11 +44,11 @@
     max-width: 100px;
 }
 
-@media only screen and (max-width: 720px) {
+@media (max-width: 720px) {
 
     .header-image {
         background-position: cover;
-        margin: 50px;
+        margin: 20px;
         max-width:400px;
     }
 
@@ -76,12 +76,13 @@
 
 }
 
-@media only screen and (max-width: 420px) {
+@media (max-width: 420px) {
 
     .header-image {
         background-position: cover;
-        margin: 50px;
-        max-width:350px;
+        margin: 20px 10px;
+        align-self: center;
+        max-width:320px;
     }
 
     .post-content {
