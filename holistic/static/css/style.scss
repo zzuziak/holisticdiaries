@@ -15,6 +15,10 @@ h1.title {
   display: grid | inline-grid;
 }
 
+em {
+  color:black;
+  font-weight: bolder;
+}
 
 /* Typography imported from Google Fonts */
 @import url('https://fonts.googleapis.com/css?family=Playfair+Display|Source+Sans+Pro:200,400');
@@ -85,7 +89,10 @@ a:hover {
 }
 
 .post-card-body > figure > a > img {
-  width: 100%;
+  max-width: 100%;
+  display: block;
+  width: auto;
+  height: auto;
 }
 
 .post-card-body > figure > a > figcaption {
@@ -118,5 +125,4 @@ a:hover {
   align-items: center;
   justify-content: space-between;
 }
-
 

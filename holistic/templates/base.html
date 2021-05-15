@@ -1,4 +1,3 @@
-{% load tags %}
 <!doctype html>
 <html lang="en">
 
@@ -35,8 +34,6 @@
                         <a class='nav-link' href="{% url 'add_category' %}">Add category</a>
                     </li>
                     {% endif %}
-
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
                 </ul>
                 <a class="navbar-nav nav-link float-right" href="{% url 'logout' %}">Log out</a>
             </div>
@@ -49,8 +46,6 @@
         </div>
         <div class="navigation">
             <a href='{% url "home" %}' class="navigation-item">Blog</a>
-            {% if cat_menu %}
-
             <div class="dropdown">
                 <a class="navigation-item -toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false">
@@ -60,15 +55,6 @@
                     {% for cat in cat_menu %}
                     <li><a class="dropdown-item" href="{% url 'category' cat|slugify %}">{{ cat.name }}</a></li>
                     {% endfor%}
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    {% else%}
-                    <li class="nav-item">
-                        <a class='nav-link' href="{% url 'categories_list' %}">Categories</a>
-                    </li>
-                    {% endif%}
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
                 </ul>
             </div>
             <a href='{% url "about" %}' class="navigation-item">About</a>
