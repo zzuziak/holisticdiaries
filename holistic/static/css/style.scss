@@ -85,7 +85,10 @@ a:hover {
 }
 
 .post-card-body > figure > a > img {
-  width: 100%;
+  // width: 100%;
+  display: block;
+  width: auto;
+  height: auto;
 }
 
 .post-card-body > figure > a > figcaption {
