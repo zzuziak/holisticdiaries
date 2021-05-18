@@ -129,3 +129,8 @@ class AddCommentView(CreateView):
     def get_success_url(self):
         return reverse_lazy('post', kwargs={'pk': self.kwargs['pk']})
 
+# TAGS
+
+def TagView(request, tag):
+    tag_posts = Post.objects.filter(tag__name__contains=tag.replace('-', ' '))
+    return render(request, 'tag.html', {'tag': tag.title().replace('-', ' '), 'tag_posts': tag_posts})

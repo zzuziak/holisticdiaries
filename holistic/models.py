@@ -20,6 +20,18 @@ class Category(models.Model):
     def upper(self):
         return self.name.upper()
 
+class Tag(models.Model):
+    name = models.CharField(max_length=255, default='general')
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('home')
+
+    def upper(self):
+        return self.name.upper()
+
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
@@ -29,8 +41,8 @@ class Post(models.Model):
     post_date = models.DateField(auto_now_add=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     likes = models.ManyToManyField(User, related_name='blog_posts')
+    tag = models.ManyToManyField(Tag, related_name='tags')
     header_image = CloudinaryField('image')
-    nothing = models.CharField(max_length=10, default="")
 
     def __str__(self):
         return self.title + " | " + str(self.category)
