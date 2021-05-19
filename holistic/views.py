@@ -23,13 +23,8 @@ def ContactView(request):
     return render(request, 'contact.html', {})
 
 
-def PostView(request, pk, *args, **kwargs):
-    post = get_object_or_404(Post, pk=pk)
-    cat_menu = Category.objects.all()
-    total_likes = post.total_like_count()
-    liked = False
-    if post.likes.filter(id=post.id).exists():
-        liked = True
+def PostView(request, slug, *args, **kwargs):
+    post = get_object_or_404(Post, slug=slug)
 
     if request.method == "POST":
         form = CommentForm(request.POST)
@@ -37,13 +32,11 @@ def PostView(request, pk, *args, **kwargs):
             comment = form.save(commit=False)
             comment.post = post
             comment.save()
-            return redirect('post', pk=post.pk)
+            return redirect('post', slug=post.slug)
     else:
         form = CommentForm()
 
     return render(request, 'post_details.html', {
-        'total_likes': total_likes,
-        'liked': liked,
         'form': form,
         'post': post
         })
@@ -99,7 +92,7 @@ class AddCategoryView(CreateView):
 
 
 def CategoryView(request, cats):
-    category_posts = Post.objects.filter(category__name__contains=cats.replace('-', ' '))
+    category_posts = Post.objects.filter(category__name__contains=cats.replace('-', ' ')).order_by("-post_date")
     return render(request, 'categories.html', {'cats': cats.title().replace('-', ' '), 'category_posts': category_posts})
 
 def CategoryListView(request):
@@ -127,5 +120,10 @@ class AddCommentView(CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('post', kwargs={'pk': self.kwargs['pk']})
+        return reverse_lazy('post', kwargs={'slug': self.kwargs['slug']})
 
+# TAGS
+
+def TagView(request, tag):
+    tag_posts = Post.objects.filter(tag__name__contains=tag.replace('-', ' '))
+    return render(request, 'tag.html', {'tag': tag.title().replace('-', ' '), 'tag_posts': tag_posts})

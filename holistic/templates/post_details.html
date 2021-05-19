@@ -9,18 +9,23 @@
     <h1>{{ post.title }}</h1>
     {% if user.is_authenticated %}
     <div class="manage-post">
-        <a href="{% url 'update_post' post.pk %}" class='manage badge btn-dark'>Edit</a>
-        <a href="{% url 'delete_post' post.pk %}" class='manage badge btn-warning'>Delete</a>
+        <a href="{% url 'update_post' post.slug %}" class='manage badge btn-dark'>Edit</a>
+        <a href="{% url 'delete_post' post.slug %}" class='manage badge btn-warning'>Delete</a>
     </div>
     {% endif %}
     <hr>
     <p>{{ post.body|safe }}</p>
-
+    {% if post.tag.any %}
+    <p class='category'>TAGS:
+    {% for tag in post.tag.all %}
+            <a href="{% url 'tag' tag|slugify %}" class='badge btn-secondary text-decoration-none'>{{ tag }}</a>
+    {% endfor %}
+    {% endif %}
+    </p>
     <h3 class="comments">Comments</h3>
     {% if not post.comments.all %}
 
     Leave the first comment!
-    <h5>Write a comment</h5>
     <br /><br />
 
     <div class="container">

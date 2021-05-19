@@ -2,13 +2,13 @@
 
 {% block content %}
 
-<h1>{{ cats }} blog posts</h1>
+<h1>{{ tag }} blog posts</h1>
 
-{% if category_posts %}
+{% if tag_posts %}
 <div class="row">
     <section class="posts" id="posts">
         <div class='posts-grid'>
-            {% for post in category_posts %}
+            {% for post in tag_posts %}
             <div class="post-card">
                 <div class="post-card-body">
                     <figure>
@@ -42,7 +42,7 @@
 </div>
 
 {% else %}
-<p>Sorry, no posts for this category</p>
+<p>Sorry, no posts for this tag</p>
 {% endif %}
 
 

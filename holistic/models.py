@@ -1,9 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
-from datetime import datetime, date
 from ckeditor.fields import RichTextField
 from cloudinary.models import CloudinaryField
+from django.utils.text import slugify
 
 class Category(models.Model):
     class Meta:
@@ -20,27 +20,42 @@ class Category(models.Model):
     def upper(self):
         return self.name.upper()
 
+class Tag(models.Model):
+    name = models.CharField(max_length=255, default='general')
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('home')
+
+    def upper(self):
+        return self.name.upper()
+
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255, default="")
     post_summary = models.TextField(max_length=999, default="")
     body = RichTextField(blank=True, null=True)
     published = models.BooleanField(default=False)
     post_date = models.DateField(auto_now_add=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     likes = models.ManyToManyField(User, related_name='blog_posts')
+    tag = models.ManyToManyField(Tag, related_name='tags')
     header_image = CloudinaryField('image')
-    nothing = models.CharField(max_length=10, default="")
 
     def __str__(self):
         return self.title + " | " + str(self.category)
 
     def get_absolute_url(self):
         # return reverse('post', args=(str(self.id)))
-        return reverse('home')
+        return reverse('post', kwargs={"slug": self.slug})
 
-    def total_like_count(self):
-        return self.likes.count()
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super(Post, self).save(*args, **kwargs)
 
 
 class Comment(models.Model):
