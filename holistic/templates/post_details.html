@@ -9,8 +9,8 @@
     <h1>{{ post.title }}</h1>
     {% if user.is_authenticated %}
     <div class="manage-post">
-        <a href="{% url 'update_post' post.pk %}" class='manage badge btn-dark'>Edit</a>
-        <a href="{% url 'delete_post' post.pk %}" class='manage badge btn-warning'>Delete</a>
+        <a href="{% url 'update_post' post.slug %}" class='manage badge btn-dark'>Edit</a>
+        <a href="{% url 'delete_post' post.slug %}" class='manage badge btn-warning'>Delete</a>
     </div>
     {% endif %}
     <hr>
