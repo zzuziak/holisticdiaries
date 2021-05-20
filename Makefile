@@ -15,3 +15,6 @@ dbshell:
 
 sass:
 	python manage.py sass holistic/static/css/style.scss holistic/static/css/style.css  -g
+
+watch_sass:
+	python manage.py sass holistic/static/css/style.scss holistic/static/css/style.css  --watch
