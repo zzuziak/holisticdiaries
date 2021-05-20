@@ -31,7 +31,7 @@ SECRET_KEY = 'j9kyahmsmw41ip(zr5bh_(8zxl$q3e%o6*85m$yx-2sy_&%69&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['http://localhost:8000/', 'www.theholisticdiaries.herokuapp.com', 'www.the-holistic-diaires.com']
 
 
 # Application definition

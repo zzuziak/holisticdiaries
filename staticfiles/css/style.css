@@ -1,0 +1,262 @@
+@import url("https://fonts.googleapis.com/css2?family=Nixie+One&family=Playfair+Display:wght@400;700&family=Poppins:ital,wght@0,100;0,300;0,600;1,100&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Playfair+Display|Source+Sans+Pro:200,400");
+.post-image-box {
+  display: flex;
+  justify-content: center;
+}
+
+.header-image {
+  margin: auto;
+  max-width: 520px;
+  display: block;
+  width: auto !important;
+  height: auto !important;
+}
+
+.post-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 75%;
+  margin: auto;
+}
+
+.comments {
+  margin: 20px 0;
+}
+
+.comment {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+}
+
+.comment-form {
+  margin: 15px;
+}
+
+.reply {
+  margin-left: 20px;
+}
+
+.manage-post {
+  display: flex;
+}
+
+.manage {
+  text-decoration: none;
+  max-width: 100px;
+}
+
+@media (max-width: 720px) {
+  .header-image {
+    max-width: 360px;
+  }
+  .post-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 95%;
+    margin: auto;
+  }
+  .comments {
+    margin: 10px 0;
+  }
+  .comment {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+  }
+  .comment-form {
+    margin: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-image {
+    max-width: 300px;
+  }
+}
+
+.navigation-item {
+  color: #4a4a4a !important;
+  font-size: 1rem;
+  text-decoration: none;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.navigation {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  height: 100%;
+}
+
+.content {
+  min-height: calc(100vh - 90px);
+}
+
+h1.title {
+  font-family: 'Nixie One', serif;
+  margin: 30px 0;
+}
+
+.blog-posts-container {
+  display: grid | inline-grid;
+}
+
+em {
+  color: black;
+  font-weight: bolder;
+}
+
+/* Typography imported from Google Fonts */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+}
+
+.post-details, a {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+/* Generic styles */
+html {
+  scroll-behavior: smooth;
+}
+
+small.date {
+  margin-left: 10px;
+}
+
+a.buttonify {
+  background-color: goldenrod;
+  text-decoration: none;
+  color: white;
+  border-radius: .05rem;
+  text-align: center;
+  display: inline-block;
+  transition: all .3s;
+}
+
+a.read {
+  color: #4a4a4a;
+  text-decoration: none;
+}
+
+a:hover {
+  opacity: .6;
+}
+
+/* posts styles */
+.posts {
+  padding: 2rem;
+}
+
+.posts .posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-gap: 1rem;
+  justify-content: center;
+}
+
+.posts > .posts-grid > .post-card {
+  border: 1px solid #E2E2E2;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.post-card-body > figure {
+  max-height: 220px;
+  overflow: hidden;
+  border-top-left-radius: .05rem;
+  border-top-right-radius: .05rem;
+  position: relative;
+}
+
+.post-card-body > figure > a > img {
+  max-width: 100%;
+  display: block;
+  width: auto;
+  height: auto;
+}
+
+.post-card-body > figure > a > figcaption {
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+}
+
+.post-card-body > figure > a > figcaption > h3 {
+  color: white;
+  padding: .75rem;
+  font-size: 1.25rem;
+}
+
+.post-details > p {
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 1rem .75rem;
+  color: #666666;
+}
+
+.date {
+  color: #666666;
+}
+
+.actions {
+  margin: 0px 20px 20px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer {
+  background: #F4F4F4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  padding: 0px 50px;
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+}
+
+.footer-links a {
+  color: black;
+  opacity: 0.15;
+  text-decoration: none;
+  font-size: 24px;
+  padding: 0px 10px;
+}
+
+.footer-links a:hover {
+  opacity: 1;
+}
+
+.footer-copyright a {
+  color: black;
+  opacity: 0.15;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none;
+}
+
+.footer-copyright a:hover {
+  opacity: 1;
+}
+
+.footer .fa-heart {
+  color: #D23333;
+}
