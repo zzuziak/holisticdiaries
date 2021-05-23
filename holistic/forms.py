@@ -16,6 +16,7 @@ class PostForm(forms.ModelForm):
             'published': forms.CheckboxInput(),
         }
 
+
 class EditPostForm(forms.ModelForm):
     def init(self, *args, **kwargs):
         super(EditPostForm, self).init(*args, **kwargs)
