@@ -1,6 +1,6 @@
 from holistic.models import Post
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post, Category, Comment, Reply
+from .models import Post, Category, Comment, Notification
 from .forms import PostForm, EditPostForm, CommentForm
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import redirect, render, get_object_or_404
@@ -32,12 +32,26 @@ def PostView(request, slug, *args, **kwargs):
             comment = form.save(commit=False)
             comment.post = post
             comment.save()
+            notif = Notification(comment=comment)
+            notif.save()
             return redirect('post', slug=post.slug)
     else:
         form = CommentForm()
 
     return render(request, 'post_details.html', {
         'form': form,
+        'post': post
+        })
+
+
+def MarkNotifAsRead(request, pk, *args, **kwargs):
+    notif = Notification.objects.get(pk=pk)
+    notif.read = True
+    notif.save()
+    post = notif.comment.post
+
+    return render(request, 'post_details.html', {
+        'form': CommentForm(),
         'post': post
         })
 

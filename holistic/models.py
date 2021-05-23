@@ -83,3 +83,9 @@ class Reply(models.Model):
 
     def __str__(self):
         return f'{self.name} - {self.created_at}'
+
+
+class Notification(models.Model):
+    read = models.BooleanField(default=False)
+    comment = models.ForeignKey(Comment, related_name="notifications", on_delete=models.CASCADE)
+    created_at = models.DateField(auto_now_add=True)
